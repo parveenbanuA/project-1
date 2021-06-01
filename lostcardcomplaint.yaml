@@ -1,0 +1,267 @@
+paths:
+  /complaintregister:
+    post:
+      summary: complaint register.
+      consumes:
+          - application/json
+      produces:
+          - application/json
+      parameters:
+          - in: body
+            name: bank
+            description: complaint register
+            schema:
+              $ref: '#/definitions/complaintregister'
+      responses:
+            '200':
+              description: "complaint registered Successfuly"
+            '400':
+              description: Bad request.
+            "405":
+              description: "Invalid input"
+
+
+  /updatecardstatus/{accno}:
+    put:
+      summary: update card status.
+      consumes:
+          - application/json
+      produces:
+          - application/json
+      parameters:
+          - name: accno
+            in: path
+            description: accno need to update
+            required: true
+            type: integer
+          - in: body
+            name: bank
+            description: update card status
+            required: true
+            schema:
+              $ref: '#/definitions/updatecardstatus'
+      responses:
+            '200':
+              description: card status updated Successfuly
+            '400':
+              description: Bad request.
+            "405":
+              description: "Invalid input"
+
+
+  /viewallcomplaint:
+    get:
+      summary: view all complaint.
+      consumes:
+          - application/json
+      produces:
+          - application/json
+      parameters: []
+
+      responses:
+            '200':
+              description: complaint viewed Successfuly
+            '400':
+              description: Bad request.
+            "405":
+              description: "Invalid input"
+  /viewcomplaint/{accno}:
+    get:
+      summary: view complaint
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: accno
+          in: path
+          description: accno need to update
+          required: true
+          type: integer
+      responses:
+            '200':
+              description: complaint viewed Successfuly
+            '400':
+              description: Bad request.
+            "405":
+              description: "Invalid input"
+
+
+
+  /applynewcard:
+    post:
+      summary: apply new card.
+      consumes:
+          - application/json
+      produces:
+          - application/json
+      parameters:
+          - in: body
+            name: bank
+            description: apply new card
+            schema:
+              $ref: '#/definitions/applynewcard'
+      responses:
+            '200':
+              description: applied Successfuly
+            '400':
+              description: Bad request.
+            "405":
+              description: "Invalid input"
+  /viewallapplication:
+    get:
+      summary: view all applicatin.
+      consumes:
+          - application/json
+      produces:
+          - application/json
+      parameters: [ ]
+
+      responses:
+            '200':
+              description: application viewed Successfuly
+            '400':
+              description: Bad request.
+            "405":
+              description: "Invalid input"
+  /cardgeneration:
+    post:
+      summary: generate new card.
+      consumes:
+          - application/json
+      produces:
+          - application/json
+      parameters:
+          - in: body
+            name: bank
+            description: apply new card
+            schema:
+              $ref: '#/definitions/cardgeneration'
+      responses:
+            '200':
+              description: generated  Successfuly
+            '400':
+              description: Bad request.
+            "405":
+              description: "Invalid input"
+  /viewallcard:
+    get:
+      summary: view all card.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters: [ ]
+
+      responses:
+        '200':
+          description: application viewed Successfuly
+        '400':
+          description: Bad request.
+        "405":
+          description: "Invalid input"
+  /generatepin:
+    post:
+      summary: generate new pin.
+      consumes:
+          - application/json
+      produces:
+          - application/json
+      parameters:
+          - in: body
+            name: bank
+            description: apply new card
+            schema:
+              $ref: '#/definitions/generatepin'
+      responses:
+            '200':
+              description: generated  Successfuly
+            '400':
+              description: Bad request.
+            "405":
+              description: "Invalid input"
+
+
+definitions:
+  complaintregister:
+    type: object
+    required: true
+    properties:
+      accno:
+        type: integer
+        in: formData
+      debitcardnumber:
+        type: integer
+        in: formData
+      typeofaction:
+        type: string
+        in: fromData
+      typeofblock:
+        type: string
+        in: formData
+      reasonforblocking:
+        type: string
+        in: fromData
+
+  updatecardstatus:
+    type: object
+    required: true
+    properties:
+      newaction:
+        type: string
+        in: fromData
+
+
+  applynewcard:
+    type: object
+    required: true
+    properties:
+      firstname:
+        type: string
+        in: formData
+      lastname:
+        type: string
+        in: formData
+      dob:
+        type: string
+        in: formData
+        format: date
+      mobileno:
+        type: integer
+        in: formData
+      currentlocation:
+        type: string
+        in: formData
+      email:
+        type: string
+        in: formData
+        format: email
+      typeofemployment:
+        type: string
+        in: formData
+      relationship_with_bank:
+        type: string
+        in: fromData
+  cardgeneration:
+    type: object
+    required: true
+    properties:
+      firstname:
+        type: string
+        in: formData
+  generatepin:
+    type: object
+    required: true
+    properties:
+      accno:
+        type: string
+        in: formData
+      mobileno:
+        type: integer
+        in: formData
+
+
+
+
+
+
